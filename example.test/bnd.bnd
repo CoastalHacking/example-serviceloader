@@ -26,7 +26,6 @@ javac.target: 1.8
 -runbundles: \
 	org.apache.aries.spifly.dynamic.bundle;version='[1.0.10,1.0.11)',\
 	org.apache.aries.util;version='[1.1.1,1.1.2)',\
-	org.apache.felix.log;version='[1.0.1,1.0.2)',\
 	org.objectweb.asm.all;version='[5.0.4,5.0.5)',\
 	example.api;version=snapshot,\
 	example.test;version=snapshot,\
@@ -34,7 +33,13 @@ javac.target: 1.8
 	org.mockito.mockito-core;version='[1.10.19,1.10.20)',\
 	org.objenesis;version='[2.6.0,2.6.1)',\
 	example.provider;version=snapshot,\
-	example.consumer;version=snapshot
+	example.consumer;version=snapshot,\
+	org.apache.felix.configadmin;version='[1.8.10,1.8.11)',\
+	org.apache.felix.eventadmin;version='[1.4.8,1.4.9)',\
+	org.apache.felix.gogo.command;version='[0.16.0,0.16.1)',\
+	org.apache.felix.gogo.runtime;version='[0.16.2,0.16.3)',\
+	org.apache.felix.gogo.shell;version='[0.12.0,0.12.1)',\
+	org.apache.felix.metatype;version='[1.1.2,1.1.3)'
 
 Bundle-Version: 0.0.0.${tstamp}
 Private-Package: example.test
@@ -47,5 +52,10 @@ Private-Package: example.test
 -runvm: -ea
 -runrequires: \
 	osgi.identity;filter:='(osgi.identity=org.apache.aries.spifly.dynamic.bundle)',\
-	osgi.identity;filter:='(osgi.identity=example.test)'
+	osgi.identity;filter:='(osgi.identity=example.test)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.gogo.command)(version>=0.16.0))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.eventadmin)(version>=1.4.8))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.configadmin)(version>=1.8.10))',\
+	osgi.identity;filter:='(&(osgi.identity=org.apache.felix.metatype)(version>=1.1.2))'
 -runee: JavaSE-1.8
