@@ -12,9 +12,11 @@ Test-Cases: ${classes;CONCRETE;ANNOTATED;org.junit.runner.RunWith}
 -buildpath: \
 	${junit},\
 	${mockito},\
-	osgi.annotation; version=6.0.1,\
-	osgi.core; version=6.0,\
-	osgi.cmpn; version=6.0
+	osgi.annotation;version=6.0.1,\
+	osgi.core;version=6.0,\
+	osgi.cmpn;version=6.0,\
+	example.api;version=latest,\
+	example.consumer;version=latest
 
 javac.source: 1.8
 javac.target: 1.8
@@ -22,8 +24,17 @@ javac.target: 1.8
 # We need JUnit and Mockito to resolve the test cases at runtime. 
 # Other runtime dependencies should be added as necessary
 -runbundles: \
-	${junit},\
-	${mockito}
+	org.apache.aries.spifly.dynamic.bundle;version='[1.0.10,1.0.11)',\
+	org.apache.aries.util;version='[1.1.1,1.1.2)',\
+	org.apache.felix.log;version='[1.0.1,1.0.2)',\
+	org.objectweb.asm.all;version='[5.0.4,5.0.5)',\
+	example.api;version=snapshot,\
+	example.test;version=snapshot,\
+	org.apache.servicemix.bundles.junit;version='[4.12.0,4.12.1)',\
+	org.mockito.mockito-core;version='[1.10.19,1.10.20)',\
+	org.objenesis;version='[2.6.0,2.6.1)',\
+	example.provider;version=snapshot,\
+	example.consumer;version=snapshot
 
 Bundle-Version: 0.0.0.${tstamp}
 Private-Package: example.test
@@ -34,3 +45,7 @@ Private-Package: example.test
 # Use Felix by default
 -runfw: org.apache.felix.framework;version=5
 -runvm: -ea
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=org.apache.aries.spifly.dynamic.bundle)',\
+	osgi.identity;filter:='(osgi.identity=example.test)'
+-runee: JavaSE-1.8

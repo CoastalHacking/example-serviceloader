@@ -11,13 +11,11 @@ javac.source: 1.8
 javac.target: 1.8
 
 Bundle-Version: 0.0.0.${tstamp}
-Private-Package: example.provider
 
-# SPI
+# OSGi Compendium 133.3.2
 Require-Capability: osgi.extender; \
-	filter:="(osgi.extender=osgi.serviceloader.registrar)"
+	filter:="(&(osgi.extender=osgi.serviceloader.processor)(version>=1.0)(!(version>=2.0)))", \
+	osgi.serviceloader; \
+	filter:="(osgi.serviceloader=example.api.ExampleService)"
 
-Provide-Capability: osgi.serviceloader; \
-	osgi.serviceloader=example.api.ExampleService
-
-Include-Resource: META-INF=src/META-INF
+Export-Package: example.consumer
