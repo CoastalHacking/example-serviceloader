@@ -26,7 +26,7 @@ public class ExampleServiceITest {
 	}
 
 	@Test
-	public void shouldLoadService() {
+	public void shouldHaveConsumer() {
 		ExampleConsumer consumer = new ExampleConsumer();
 		Assert.assertTrue(consumer.canConsume());
 	}
